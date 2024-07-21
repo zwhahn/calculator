@@ -29,14 +29,48 @@ function operate(a, operator, b){
         return multiply(a, b);
     }
     else if (operator === 'divide'){
+        if (b === 0){
+            return "Can't divide by 0";
+        }
         return divide(a, b);
     }
     else {
-        return 'ERROR: Operator not recognized'
+        return 'ERROR: Operator not recognized';
     }
 }
 
-console.log(`addition(3,5): ${operate(3, 'add', 5)}`);
-console.log(`subtract(5,3): ${operate(3, 'subtract', 5)}`);
-console.log(`multiply(3,5): ${operate(3, 'multiply', 5)}`);
-console.log(`divide(6,3): ${operate(6, 'divide', 3)}`);
+function updateValue(buttonValue){
+    if (operator === undefisned){
+        firstNumber = buttonValue;
+        console.log(`first value: ${firstNumber}`);
+        return;
+    } else if (secondNumber === undefined){
+        secondNumber = buttonValue;
+        console.log(`second value: ${secondNumber}`);
+        return;
+    }
+    console.log("both numbers updated")
+    return;
+
+}
+
+const numButtons = document.querySelectorAll(".num")
+numButtons.forEach(numButton => {
+    numButton.addEventListener("click", () => updateValue(numButton.innerHTML))  
+})
+
+
+//click firstNumber
+    //update firstNumber
+//click operator
+    // add operator
+    // clear display
+//click secondNumber
+    // update secondNumber
+//click equal
+    //run operator
+    //update firstNumber with sum
+
+//clear
+    //clears all values
+
