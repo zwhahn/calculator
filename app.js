@@ -1,3 +1,7 @@
+var firstNumber;
+var secondNumber;
+var operator;
+
 function add(a, b){
     return (a+b);
 }
@@ -14,9 +18,6 @@ function divide(a, b){
     return (a/b);
 }
 
-var firstNumber;
-var secondNumber;
-var operator;
 
 function operate(a, operator, b){
     if (operator === 'add'){
@@ -39,8 +40,8 @@ function operate(a, operator, b){
     }
 }
 
-function updateValue(buttonValue){
-    if (operator === undefisned){
+function getValue(buttonValue){
+    if (operator === undefined){
         firstNumber = buttonValue;
         console.log(`first value: ${firstNumber}`);
         return;
@@ -54,9 +55,19 @@ function updateValue(buttonValue){
 
 }
 
+function updateOperator(operation){
+    operator = operation;
+    return;
+}
+
 const numButtons = document.querySelectorAll(".num")
 numButtons.forEach(numButton => {
-    numButton.addEventListener("click", () => updateValue(numButton.innerHTML))  
+    numButton.addEventListener("click", () => getValue(numButton.innerHTML))  
+})
+
+const opButtons = document.querySelectorAll(".operation")
+opButtons.forEach(opButton => {
+    opButton.addEventListener("click", () => updateOperator(opButton.innerHTML))
 })
 
 
