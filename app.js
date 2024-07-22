@@ -50,7 +50,7 @@ function operate(){
         firstNumber = solution;
         secondNumber = null;
         operator = null;
-        solution = null;
+        // solution = null;
         console.log(operator);
         return;
     }
@@ -58,7 +58,7 @@ function operate(){
 }
 
 function getValue(btnValue){
-    if (!operator){
+    if (!operator && !solution){
         if (!firstNumber){
             firstNumber = btnValue;
         }
@@ -69,7 +69,7 @@ function getValue(btnValue){
         console.log(`first value: ${firstNumber}`);
         return;
     } 
-    else if (operator && firstNumber){
+    else if ((operator && firstNumber) || solution){
         if(!secondNumber){
             secondNumber = btnValue;
         }
