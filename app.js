@@ -25,29 +25,40 @@ function updateDisplay(solution){
 }
 
 function operate(a, operator, b){
-    a = Number(a)
-    b = Number(b)
-    switch(operator){
-        case 'add':
-            return add(a, b);
-        case 'subtract':
-            return subtract(a, b);
-        case 'multiply':
-            return multiply(a, b);
-        case 'divide':
-            return divide(a, b);
-        default:
-            return '';
+    if(a && operator && b){
+        a = Number(a)
+        b = Number(b)
+        switch(operator){
+            case 'add':
+                solution = add(a, b);
+                break;
+            case 'subtract':
+                solution = subtract(a, b);
+                break;
+            case 'multiply':
+                solution = multiply(a, b);
+                break;
+            case 'divide':
+                solution = divide(a, b);
+                break;
+            default:
+                solution = '';
+        }
+        updateDisplay(solution);
+        firstNumber = solution;
+        operator = null;
+        secondNumber = null;
+        return;
     }
 }
 
 function getValue(btnValue){
-    if (!operator){
+    if (!firstNumber){
         firstNumber = btnValue;
         updateDisplay(firstNumber);
         console.log(`first value: ${firstNumber}`);
         return;
-    } else if (!secondNumber){
+    } else if (operator && firstNumber){
         secondNumber = btnValue;
         updateDisplay(secondNumber);
         console.log(`second value: ${secondNumber}`);
@@ -55,7 +66,6 @@ function getValue(btnValue){
     }
     console.log("both numbers updated")
     return;
-
 }
 
 function getOperator(operation){
@@ -64,23 +74,23 @@ function getOperator(operation){
     return;
 }
 
+// Clear one value at a time, not all values
 function clear(){
-    updateDisplay('');
-    if (!operator || solution){
+    if (!operator){
+        updateDisplay('');
         firstNumber = null;
         return;
     }
-    else if (!secondNumber || solution){
+    else if (!secondNumber){
         operator = null;
         return;
     }
     else {
+        updateDisplay('');
         secondNumber = null;
         solution = null;
         return;
     }
-    
-
 }
 
 const numBtns = document.querySelectorAll(".num")
@@ -94,7 +104,7 @@ opBtns.forEach(opBtn => {
 })
 
 const equalBtn = document.getElementById("equal")
-equalBtn.addEventListener("click", () => updateDisplay(operate(firstNumber, operator, secondNumber)))
+equalBtn.addEventListener("click", () => operate(firstNumber, operator, secondNumber))
 
 const clearBtn = document.getElementById("clear")
 clearBtn.addEventListener("click", () => clear())
