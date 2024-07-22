@@ -1,7 +1,7 @@
-var firstNumber;
-var secondNumber;
-var operator;
-var solution;
+var firstNumber = null;
+var secondNumber = null;
+var operator = null;
+var solution = null;
 
 function add(a, b){
     return (a+b);
@@ -48,11 +48,12 @@ function operate(a, operator, b){
 }
 
 function getValue(btnValue){
-    if (operator === undefined){
+    if (!operator){
         firstNumber = btnValue;
+
         console.log(`first value: ${firstNumber}`);
         return;
-    } else if (secondNumber === undefined){
+    } else if (!secondNumber){
         secondNumber = btnValue;
         console.log(`second value: ${secondNumber}`);
         return;
@@ -70,6 +71,20 @@ function getOperator(operation){
 
 function clear(){
     updateDisplay('');
+    if (!operator || solution){
+        firstNumber = null;
+        return;
+    }
+    else if (!secondNumber || solution){
+        operator = null;
+        return;
+    }
+    else {
+        secondNumber = null;
+        solution = null;
+        return;
+    }
+    
 
 }
 
@@ -88,7 +103,5 @@ equalBtn.addEventListener("click", () => updateDisplay(operate(firstNumber, oper
 
 const clearBtn = document.getElementById("clear")
 clearBtn.addEventListener("click", () => clear())
-// clearBtn.addEventListener("click", () => updateDisplay(''))
-
 
 const display = document.getElementById("display")
