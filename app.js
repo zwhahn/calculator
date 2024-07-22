@@ -1,4 +1,4 @@
-var firstNumber = null;
+var firstNumber = 0;
 var secondNumber = null;
 var operator = null;
 var solution = null;
@@ -24,7 +24,9 @@ function updateDisplay(solution){
     return;
 }
 
-function operate(a, operator, b){
+function operate(){
+    a = firstNumber;
+    b = secondNumber;
     if(a && operator && b){
         a = Number(a)
         b = Number(b)
@@ -46,20 +48,34 @@ function operate(a, operator, b){
         }
         updateDisplay(solution);
         firstNumber = solution;
-        operator = null;
         secondNumber = null;
+        operator = null;
+        solution = null;
+        console.log(operator);
         return;
     }
+    return;
 }
 
 function getValue(btnValue){
-    if (!firstNumber){
-        firstNumber = btnValue;
+    if (!operator){
+        if (!firstNumber){
+            firstNumber = btnValue;
+        }
+        else {
+            firstNumber += btnValue;
+        }
         updateDisplay(firstNumber);
         console.log(`first value: ${firstNumber}`);
         return;
-    } else if (operator && firstNumber){
-        secondNumber = btnValue;
+    } 
+    else if (operator && firstNumber){
+        if(!secondNumber){
+            secondNumber = btnValue;
+        }
+        else {
+            secondNumber += btnValue;
+        }
         updateDisplay(secondNumber);
         console.log(`second value: ${secondNumber}`);
         return;
@@ -69,6 +85,9 @@ function getValue(btnValue){
 }
 
 function getOperator(operation){
+    if(!firstNumber){
+        return;
+    }
     operator = operation;
     console.log(operator);
     return;
@@ -76,17 +95,22 @@ function getOperator(operation){
 
 // Clear one value at a time, not all values
 function clear(){
+    console.log(`${operator}`)
     if (!operator){
         updateDisplay('');
         firstNumber = null;
+        console.log(`no operator`)
         return;
     }
     else if (!secondNumber){
+        updateDisplay('');
         operator = null;
+        console.log(`no secondNumber`)
         return;
     }
     else {
         updateDisplay('');
+        firstNumber = null;
         secondNumber = null;
         solution = null;
         return;
