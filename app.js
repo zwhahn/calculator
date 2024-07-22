@@ -43,7 +43,7 @@ function operate(a, operator, b){
         return divide(a, b);
     }
     else {
-        return 'ERROR: Operator not recognized';
+        return '';
     }
 }
 
@@ -62,11 +62,15 @@ function getValue(btnValue){
 
 }
 
-function updateOperator(operation){
+function getOperator(operation){
     operator = operation;
     console.log(operator);
-    console.log(firstNumber);
     return;
+}
+
+function clear(){
+    updateDisplay('');
+
 }
 
 const numBtns = document.querySelectorAll(".num")
@@ -76,25 +80,15 @@ numBtns.forEach(numBtn => {
 
 const opBtns = document.querySelectorAll(".operation")
 opBtns.forEach(opBtn => {
-    opBtn.addEventListener("click", () => updateOperator(opBtn.innerHTML))
+    opBtn.addEventListener("click", () => getOperator(opBtn.innerHTML))
 })
 
 const equalBtn = document.getElementById("equal")
 equalBtn.addEventListener("click", () => updateDisplay(operate(firstNumber, operator, secondNumber)))
 
+const clearBtn = document.getElementById("clear")
+clearBtn.addEventListener("click", () => clear())
+// clearBtn.addEventListener("click", () => updateDisplay(''))
+
+
 const display = document.getElementById("display")
-
-//click firstNumber
-    //update firstNumber
-//click operator
-    // add operator
-    // clear display
-//click secondNumber
-    // update secondNumber
-//click equal
-    //run operator
-    //update firstNumber with sum
-
-//clear
-    //clears all values
-
