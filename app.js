@@ -1,6 +1,7 @@
 var firstNumber;
 var secondNumber;
 var operator;
+var solution;
 
 function add(a, b){
     return (a+b);
@@ -18,8 +19,14 @@ function divide(a, b){
     return (a/b);
 }
 
+function updateDisplay(solution){
+    display.innerText = solution;
+    return;
+}
 
 function operate(a, operator, b){
+    a = Number(a)
+    b = Number(b)
     if (operator === 'add'){
         return add(a, b);
     }
@@ -40,13 +47,13 @@ function operate(a, operator, b){
     }
 }
 
-function getValue(buttonValue){
+function getValue(btnValue){
     if (operator === undefined){
-        firstNumber = buttonValue;
+        firstNumber = btnValue;
         console.log(`first value: ${firstNumber}`);
         return;
     } else if (secondNumber === undefined){
-        secondNumber = buttonValue;
+        secondNumber = btnValue;
         console.log(`second value: ${secondNumber}`);
         return;
     }
@@ -57,19 +64,25 @@ function getValue(buttonValue){
 
 function updateOperator(operation){
     operator = operation;
+    console.log(operator);
+    console.log(firstNumber);
     return;
 }
 
-const numButtons = document.querySelectorAll(".num")
-numButtons.forEach(numButton => {
-    numButton.addEventListener("click", () => getValue(numButton.innerHTML))  
+const numBtns = document.querySelectorAll(".num")
+numBtns.forEach(numBtn => {
+    numBtn.addEventListener("click", () => getValue(numBtn.innerHTML))  
 })
 
-const opButtons = document.querySelectorAll(".operation")
-opButtons.forEach(opButton => {
-    opButton.addEventListener("click", () => updateOperator(opButton.innerHTML))
+const opBtns = document.querySelectorAll(".operation")
+opBtns.forEach(opBtn => {
+    opBtn.addEventListener("click", () => updateOperator(opBtn.innerHTML))
 })
 
+const equalBtn = document.getElementById("equal")
+equalBtn.addEventListener("click", () => updateDisplay(operate(firstNumber, operator, secondNumber)))
+
+const display = document.getElementById("display")
 
 //click firstNumber
     //update firstNumber
