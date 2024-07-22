@@ -27,34 +27,29 @@ function updateDisplay(solution){
 function operate(a, operator, b){
     a = Number(a)
     b = Number(b)
-    if (operator === 'add'){
-        return add(a, b);
-    }
-    else if (operator === 'subtract'){
-        return subtract(a, b);
-    }
-    else if (operator === 'multiply'){
-        return multiply(a, b);
-    }
-    else if (operator === 'divide'){
-        if (b === 0){
-            return "Can't divide by 0";
-        }
-        return divide(a, b);
-    }
-    else {
-        return '';
+    switch(operator){
+        case 'add':
+            return add(a, b);
+        case 'subtract':
+            return subtract(a, b);
+        case 'multiply':
+            return multiply(a, b);
+        case 'divide':
+            return divide(a, b);
+        default:
+            return '';
     }
 }
 
 function getValue(btnValue){
     if (!operator){
         firstNumber = btnValue;
-
+        updateDisplay(firstNumber);
         console.log(`first value: ${firstNumber}`);
         return;
     } else if (!secondNumber){
         secondNumber = btnValue;
+        updateDisplay(secondNumber);
         console.log(`second value: ${secondNumber}`);
         return;
     }
