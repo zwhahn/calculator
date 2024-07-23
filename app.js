@@ -95,7 +95,7 @@ function getOperator(operation){
 
 // Clear one value at a time, not all values
 function clear(){
-    console.log(`${operator}`)
+    solution = null;
     if (!operator){
         updateDisplay('');
         firstNumber = null;
@@ -112,7 +112,6 @@ function clear(){
         updateDisplay('');
         firstNumber = null;
         secondNumber = null;
-        solution = null;
         return;
     }
 }
