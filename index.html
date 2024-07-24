@@ -9,24 +9,68 @@
 </head>
 <body>
     <div class="fullscreen">
-        <div class="container text-bg-light calc-holder">
-            <button class="num btn text-bg-secondary">0</button>
-            <button class="num btn text-bg-secondary">1</button>
-            <button class="num btn text-bg-secondary">2</button>
-            <button class="num btn text-bg-secondary">3</button>
-            <button class="num btn text-bg-secondary">4</button>
-            <button class="num btn text-bg-secondary">5</button>
-            <button class="num btn text-bg-secondary">6</button>
-            <button class="num btn text-bg-secondary">7</button>
-            <button class="num btn text-bg-secondary">8</button>
-            <button class="num btn text-bg-secondary">9</button>
-            <button class="operation btn">add</button>
-            <button class="operation btn">subtract</button>
-            <button class="operation btn">multiply</button>
-            <button class="operation btn">divide</button>
-            <button class="btn" id="equal">equal</button>
-            <button class="btn" id="clear">clear</button>
-            <p id="display"></p>
+        <div class="calc-holder">
+            <div class="text-bg-light calc-holder">
+                <div class="display-holder">
+                        <p class="display-4 text-end" id="display"></p>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-3 d-grid gap-2">
+                        <button class="num btn btn-secondary btn-width">1</button>
+                    </div>
+                    <div class="col-3 d-grid gap-2">
+                        <button class="num btn btn-secondary btn-width">2</button>
+                    </div>
+                    <div class="col-3 d-grid gap-2">
+                        <button class="num btn btn-secondary btn-width">3</button>
+                    </div>
+                    <div class="col-3 d-grid gap-2">
+                        <button class="operation btn  btn-primary">add</button>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-3 d-grid gap-2">
+                        <button class="num btn btn-secondary btn-width">4</button>
+                    </div>
+                    <div class="col-3 d-grid gap-2">
+                        <button class="num btn btn-secondary btn-width">5</button>
+                    </div>
+                    <div class="col-3 d-grid gap-2">
+                        <button class="num btn btn-secondary btn-width">6</button>
+                    </div>
+                    <div class="col-3 d-grid gap-2">
+                        <button class="operation btn  btn-primary btn-width">subtract</button>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-3 d-grid gap-2">
+                        <button class="num btn btn-secondary btn-width">7</button>
+                    </div>
+                    <div class="col-3 d-grid gap-2">
+                        <button class="num btn btn-secondary btn-width">8</button>
+                    </div>
+                    <div class="col-3 d-grid gap-2">
+                        <button class="num btn btn-secondary btn-width">9</button>
+                    </div>
+                    <div class="col-3 d-grid gap-2">
+                        <button class="operation btn  btn-primary btn-width">multiply</button>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-3 d-grid gap-2">
+                        <button class="btn btn-warning btn-width" id="clear">AC</button>
+                    </div>
+                    <div class="col-3 d-grid gap-2">
+                        <button class="num btn btn-secondary btn-width">0</button>
+                    </div>
+                    <div class="col-3 d-grid gap-2">
+                        <button class="btn btn-success btn-width" id="equal">equal</button>
+                    </div>
+                    <div class="col-3 d-grid gap-2">
+                        <button class="operation btn btn-primary btn-width">divide</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="app.js" defer></script>

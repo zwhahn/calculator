@@ -1,0 +1,26 @@
+.fullscreen{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.display-holder{
+    background-color: white;
+    height: 70px;
+    width: 100%;
+    border: 1px black solid;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.calc-holder{
+    /* width: 400px;
+    height: 700px; */
+}
+
+.btn-width{
+    min-width: 100px;
+    max-width: 100px;
+}
