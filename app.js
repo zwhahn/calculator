@@ -2,6 +2,7 @@ var firstNumber = 0;
 var secondNumber = null;
 var operator = null;
 var solution = null;
+var operationBtn;
 
 function add(a, b){
     return (a+b);
@@ -28,6 +29,7 @@ function operate(){
     a = firstNumber;
     b = secondNumber;
     if(a && operator && b){
+        operationBtn.disabled = false;
         a = Number(a)
         b = Number(b)
         switch(operator){
@@ -84,28 +86,31 @@ function getValue(btnValue){
     return;
 }
 
-function getOperator(operation){
+function getOperator(opBtn){
     if(!firstNumber){
         return;
     }
-    operator = operation;
+    operationBtn = opBtn;
+    operator = opBtn.innerHTML;
+    operationBtn.disabled = true;
     console.log(operator);
     return;
 }
 
-// Clear one value at a time, not all values
 function clear(){
     solution = null;
+    console.log(`operator ${operator}`)
+    if(operator){
+        operationBtn.disabled = false;
+    }
     if (!operator){
         updateDisplay('');
         firstNumber = null;
-        console.log(`no operator`)
         return;
     }
     else if (!secondNumber){
         updateDisplay('');
         operator = null;
-        console.log(`no secondNumber`)
         return;
     }
     else {
@@ -123,7 +128,7 @@ numBtns.forEach(numBtn => {
 
 const opBtns = document.querySelectorAll(".operation")
 opBtns.forEach(opBtn => {
-    opBtn.addEventListener("click", () => getOperator(opBtn.innerHTML))
+    opBtn.addEventListener("click", () => getOperator(opBtn))
 })
 
 const equalBtn = document.getElementById("equal")
