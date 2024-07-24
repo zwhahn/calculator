@@ -90,6 +90,7 @@ function getOperator(opBtn){
     if(!firstNumber){
         return;
     }
+    updateDisplay('');
     operationBtn = opBtn;
     operator = opBtn.innerHTML;
     operationBtn.disabled = true;
