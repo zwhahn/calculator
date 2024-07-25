@@ -3,6 +3,7 @@ var secondNumber = null;
 var operator = null;
 var solution = null;
 var operationBtn;
+const MAX_SOLUTION_LENGTH = 13;
 
 function add(a, b){
     return (a+b);
@@ -21,6 +22,10 @@ function divide(a, b){
 }
 
 function updateDisplay(solution){
+    console.log(`text length: ${solution.length}`)
+    if (solution.length >= 10){
+        solution = solution.substring(0, MAX_SOLUTION_LENGTH);
+    }
     display.innerText = solution;
     return;
 }
@@ -29,7 +34,7 @@ function operate(){
     a = firstNumber;
     b = secondNumber;
     if(a && operator && b){
-        operationBtn.disabled = false;
+        ableAllButtons()
         a = Number(a)
         b = Number(b)
         switch(operator){
@@ -86,14 +91,12 @@ function getValue(btnValue){
     return;
 }
 
-function getOperator(opBtn){
+function getOperator(operation){
     if(!firstNumber){
         return;
     }
     updateDisplay('');
-    operationBtn = opBtn;
-    operator = opBtn.innerHTML;
-    operationBtn.disabled = true;
+    operator = operation
     console.log(operator);
     return;
 }
@@ -102,7 +105,7 @@ function clear(){
     solution = null;
     console.log(`operator ${operator}`)
     if(operator){
-        operationBtn.disabled = false;
+        ableAllButtons()
     }
     if (!operator){
         updateDisplay('');
@@ -122,6 +125,25 @@ function clear(){
     }
 }
 
+/* Ensure onle one operating button is disabled at a time */
+function changeAble(opBtn){
+    for (let btn in opBtns){
+        if (btn.disabled === true){
+            btn.disabled = false;
+        }
+    }
+    opBtn.disabled = true;
+    return;
+}
+
+function ableAllButtons(){
+    opBtns.forEach(optBtn => {
+        optBtn.disabled = false;
+        console.log(`btn ${optBtn}`);
+    })
+    return;
+}
+
 const numBtns = document.querySelectorAll(".num")
 numBtns.forEach(numBtn => {
     numBtn.addEventListener("click", () => getValue(numBtn.innerHTML))  
@@ -129,11 +151,12 @@ numBtns.forEach(numBtn => {
 
 const opBtns = document.querySelectorAll(".operation")
 opBtns.forEach(opBtn => {
-    opBtn.addEventListener("click", () => getOperator(opBtn))
+    opBtn.addEventListener("click", () => getOperator(opBtn.id));
+    opBtn.addEventListener("click", () => changeAble(opBtn));
 })
 
 const equalBtn = document.getElementById("equal")
-equalBtn.addEventListener("click", () => operate(firstNumber, operator, secondNumber))
+equalBtn.addEventListener("click", () => operate(firstNumber, operator, secondNumber), ableAllButtons());
 
 const clearBtn = document.getElementById("clear")
 clearBtn.addEventListener("click", () => clear())
