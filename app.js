@@ -3,7 +3,7 @@ var secondNumber = null;
 var operator = null;
 var solution = null;
 var operationBtn;
-const MAX_SOLUTION_LENGTH = 13;
+const MAX_INPUT_LENGTH = 13;
 
 function add(a, b){
     return (a+b);
@@ -21,12 +21,14 @@ function divide(a, b){
     return (a/b);
 }
 
-function updateDisplay(solution){
-    console.log(`text length: ${solution.length}`)
-    if (solution.length >= 10){
-        solution = solution.substring(0, MAX_SOLUTION_LENGTH);
+function updateDisplay(input){
+    input = String(input);
+    console.log(`text length: ${input.length}`)
+    if (input.length >= MAX_INPUT_LENGTH){
+        input = Number(input);
+        input = input.toExponential();
     }
-    display.innerText = solution;
+    display.innerText = input;
     return;
 }
 
@@ -102,27 +104,14 @@ function getOperator(operation){
 }
 
 function clear(){
-    solution = null;
     console.log(`operator ${operator}`)
-    if(operator){
-        ableAllButtons()
-    }
-    if (!operator){
-        updateDisplay('');
-        firstNumber = null;
-        return;
-    }
-    else if (!secondNumber){
-        updateDisplay('');
-        operator = null;
-        return;
-    }
-    else {
-        updateDisplay('');
-        firstNumber = null;
-        secondNumber = null;
-        return;
-    }
+    ableAllButtons()
+    updateDisplay('');
+    solution = null;
+    firstNumber = null;
+    secondNumber = null;
+    operator = null;
+    return;
 }
 
 /* Ensure onle one operating button is disabled at a time */
