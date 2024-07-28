@@ -25,8 +25,9 @@ function updateDisplay(input){
     input = String(input);
     console.log(`text length: ${input.length}`)
     if (input.length >= MAX_INPUT_LENGTH){
+        console.log("Bigger than MAX_INPUT_LENGTH");
         input = Number(input);
-        input = input.toExponential();
+        input = input.toExponential(3);
     }
     display.innerText = input;
     return;
