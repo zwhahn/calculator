@@ -2,7 +2,6 @@ var firstNumber = 0;
 var secondNumber = null;
 var operator = null;
 var solution = null;
-var operationBtn;
 const MAX_INPUT_LENGTH = 13;
 
 function add(a, b){
@@ -95,7 +94,9 @@ function getValue(btnValue){
 }
 
 function getOperator(operation){
-    if(!firstNumber){
+    if(firstNumber == 0){
+        console.log("operator skipped")
+        ableAllButtons();
         return;
     }
     updateDisplay('');
@@ -106,7 +107,7 @@ function getOperator(operation){
 
 function clear(){
     console.log(`operator ${operator}`)
-    ableAllButtons()
+    ableAllButtons();
     updateDisplay('');
     solution = null;
     firstNumber = null;
@@ -122,6 +123,9 @@ function changeAble(opBtn){
             btn.disabled = false;
         }
     }
+    if (firstNumber == 0){
+        return;
+    }
     opBtn.disabled = true;
     return;
 }
@@ -129,7 +133,7 @@ function changeAble(opBtn){
 function ableAllButtons(){
     opBtns.forEach(optBtn => {
         optBtn.disabled = false;
-        console.log(`btn ${optBtn}`);
+        console.log("set buttons to false")
     })
     return;
 }
