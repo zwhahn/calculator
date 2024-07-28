@@ -152,6 +152,20 @@ opBtns.forEach(opBtn => {
 const equalBtn = document.getElementById("equal")
 equalBtn.addEventListener("click", () => operate(firstNumber, operator, secondNumber), ableAllButtons());
 
+document.addEventListener("keydown", (event) => {
+    if(event.key === 'Enter'){ 
+        event.preventDefault(); 
+        operate(firstNumber, operator, secondNumber); 
+        ableAllButtons();
+    }
+    if(event.key >= 0 || event.key <= 9){
+        getValue(event.key);
+    }
+    if(event.key === 'Backspace'){
+        clear();
+    }
+})
+
 const clearBtn = document.getElementById("clear")
 clearBtn.addEventListener("click", () => clear())
 
