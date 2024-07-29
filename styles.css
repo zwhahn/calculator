@@ -16,8 +16,9 @@
 }
 
 .calc-holder{
-    /* width: 400px;
-    height: 700px; */
+    border: 2px black solid;
+    border-radius: 10px;
+    padding: 20px;
 }
 
 .btn-width{
