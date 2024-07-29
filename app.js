@@ -94,7 +94,7 @@ function getValue(btnValue){
 }
 
 function getOperator(operation){
-    if(firstNumber == 0){
+    if(firstNumber == 0 || !firstNumber){
         console.log("operator skipped")
         ableAllButtons();
         return;
@@ -116,17 +116,25 @@ function clear(){
     return;
 }
 
+// function checkFirstNumber(){
+//     if firstNumber === 'null' || firstNumber === 0)
+// }
+
 /* Ensure onle one operating button is disabled at a time */
 function changeAble(opBtn){
-    for (let btn in opBtns){
-        if (btn.disabled === true){
-            btn.disabled = false;
+    console.log(`firstNumber ${firstNumber}`)
+    if (firstNumber === 0 || !firstNumber){
+        console.log(`firstNumber is 0`);
+    }
+    else {
+        for (let btn in opBtns){
+            console.log('changing button');
+            if (btn.disabled === true){
+                btn.disabled = false;
+            }
         }
+        opBtn.disabled = true;
     }
-    if (firstNumber == 0){
-        return;
-    }
-    opBtn.disabled = true;
     return;
 }
 
